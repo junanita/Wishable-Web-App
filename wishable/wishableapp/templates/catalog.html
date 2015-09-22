@@ -1,0 +1,150 @@
+{% extends "basicTwoCols.html" %}
+
+{% block title %}
+Wishable - Catalog
+{% endblock title %}
+
+{% block js %}
+<script src="../static/js/catalog.js"></script>
+{% endblock js %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+  <li class="active-tab">
+	    <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+  </li>
+  <li>
+      <a href="{% url 'profile' user %}">Wishlists</a>
+  </li>
+  <li>
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+
+{% block searchbar %}
+<tr>
+	<td colspan=3>
+		<div class="searchbar">
+			<form method="post" id="product-search">
+        		{% if search_form.search.errors %}
+        			<p style="color:red">
+            			{{search_form.search.errors}}
+        			</p>
+				{% endif %}
+				<div class="col-sm-10">
+			 	{% if search_form %}
+			 		{{search_form.search}}
+			 	{% endif %}
+			 	</div>
+				<button type="submit" class="btn orange-btn" data-toggle="tooltip" data-placement="bottom" title="Search">
+					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+				</button>
+				<button type="button" class="btn orange-btn" id="scan-product" data-toggle="modal" data-target="#newProduct">
+					<span class="glyphicon glyphicon-plus" data-toggle="tooltip" data-placement="bottom" title="Add New Item"></span>
+				</button>
+
+
+            <!-- Modal -->
+            <div class="modal fade" id="newProduct" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+
+                  <form method="post" id="link-drop">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">Add New Product</h4>
+                    </div>
+                    <div class="modal-body new-prod-modal">
+                      {% csrf_token %}
+
+            	{% if link_form %}
+            		{{link_form.as_p}}
+            		<input type="submit" class="btn btn-primary btn-lg" id="scrape-btn">
+            	{% endif %}
+
+            	{% if edit_form %}
+            		{% if errors %}
+	        			<p style="color:red">
+	            			{{errors}}
+	        			</p>
+    				{% endif %}
+    				{% if image_src != "" %}
+				        <div>
+				         <img src="{{image_src}}" height="200" /> 
+				        </div>      
+				    {% endif %}
+					{% for field in item_form.visible_fields %}
+						<div>
+							{% for error in field.errors %}
+			        			<ul class="errorlist" style="color:red">
+			            			{{error}}
+			        			</ul>
+		    				{% endfor %}
+							<label for="{{ field.id_for_label }}">{{field.label_tag}}</label>
+							{{ field }}
+						</div>
+						<h5 style="color: red">
+						    {{ field.errors }}
+						</h5>
+					{% endfor %}
+      				<input type="submit" class="btn btn-primary btn-lg">
+ 				{% endif %}
+
+                    </div>
+               
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- End Modal -->
+
+
+			</form>
+		</div>
+	</td>
+<tr>
+{% endblock searchbar %}
+
+{% block sidebar-content %}
+<div class="btn-group-vertical catalog" role="group" aria-label="...">
+	<form method="GET" action="{% url "catalog" "all" %}">
+		<input type="submit" class="btn btn-default" value="Categories" disabled></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "all" %}">
+		<input type="submit" class="btn btn-default" value="All"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "books" %}">
+		<input type="submit" class="btn btn-default" value="Books"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "clothes" %}">
+		<input type="submit" class="btn btn-default" value="Clothes"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "home" %}">
+		<input type="submit" class="btn btn-default" value="Home"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "electronics" %}">
+		<input type="submit" class="btn btn-default" value="Electronics"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "health" %}">
+		<input type="submit" class="btn btn-default" value="Health"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "beauty" %}">
+		<input type="submit" class="btn btn-default" value="Beauty"></input>
+	</form>
+	<form method="GET" action="{% url "catalog" "misc" %}">
+		<input type="submit" class="btn btn-default" value="Misc"></input>
+	</form>
+</div>
+{% endblock sidebar-content %}
+
+{% block content-list %}
+
+    {% include "catalog-item-info.html" %}
+
+{% endblock content-list %}
+

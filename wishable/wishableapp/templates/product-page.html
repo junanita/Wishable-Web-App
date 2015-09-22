@@ -1,0 +1,185 @@
+{% extends "base.html" %}
+
+{% block js %}
+<script src="../static/js/catalog.js"></script>
+{% endblock js %}
+
+{% block title %}
+Wishable - Profile
+{% endblock title %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+  <li class="active-tab">
+      <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+  </li>
+  <li>
+      <a href="{% url 'profile' user %}">Wishlists</a>
+  </li>
+  <li>
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+{% block sidebar-content %}
+    
+ <div class="profile-sidebar">
+
+  <div class="item-info-pic">
+  {% if userProfile.picture %}
+    <img class="item-info-pic" align="center" id= "userProfile.id" src="{% url 'photo' userProfile.id %}" width="200px">
+  {% else %}
+    <img class="item-info-pic" align="center" src="../static/css/pika.png"/>
+  {% endif %}
+  </div>
+
+  <hr style="border-top:1px solid #EAC2DD;">
+
+<!-- user cannot press "follow" button on their own profile -->
+<!-- user can only follow the user who is not in his/her followee list -->
+
+  <h5 align="center"> User Information </h5>
+
+  <div class="profile-information" align="center">
+    <tr>
+        <td class="form_label_tag">Username: </td>
+        <td class="modal_field"> {{userProfile.user.username}}</td>
+        <br>
+        <td class="form_label_tag">Age: </td>
+        <td class="modal_field"> {{userProfile.age}}</td>
+        <br>
+        <td class="form_label_tag">Bio: </td>
+        <td class="modal_field"> {{userProfile.bio}}
+        </td>
+    </tr>
+  </div>
+
+  {% include "editProfile.html"%}
+
+  <hr style="border-top:1px solid #EAC2DD;">
+
+  <div class="preferred-stores">
+   <h5> Preferred Stores </h5>
+   <ul>
+     {% for company in userProfile.prefCompanies.all %}
+     <li> <a href="{{company.baseUrl}}">{{company.name}} </a></li>
+     {% endfor %}
+   </ul>
+  </div>
+</div>
+
+{% endblock sidebar-content %}
+
+
+{% block content %}
+<table class="col-lg-8 wishlist-item-box"> 
+
+<tr>
+    {% block item-info-description %}
+        <td rowspan=2 class="item-info-description">
+            {% block item-info-pic %}
+                <div class="in-line prod-info-pic">            
+                    <!-- <img src="../static/css/pika.png"/> -->
+                    <img src="{% url 'product-photo' pItem.id %}">
+                </div>
+            {% endblock item-info-pic %}
+
+            <div class="item-info-text in-line">
+                {% block item-name %}
+                <h6 class="item-name">
+                    {{ pItem.name }}
+                </h6>
+                {% endblock item-name %}
+
+                {% block company-name %}
+                <small class="company-name">
+                        {{ pItem.company.name }}
+                <!-- need company in the product module -->
+                </small>
+                {% endblock company-name %}
+
+                <div class="item-description">
+                    {% block item-description %}
+                        {{ pItem.description }}
+                    {% endblock item-description %}
+                </div>
+            </div>
+        </td>
+    {% endblock item-info-description %}
+
+
+    {% block item-info-price %}
+    <td >
+        ${{ pItem.price |floatformat:2}}
+    </td>
+    {% endblock item-info-price %}
+
+    {% block item-info-instock %}
+    <td >
+        {% if pItem.available %}
+            In Stock
+        {% else %}
+            Out of Stock
+        {% endif %}
+    </td>
+    {% endblock item-info-instock %}
+
+</tr>
+
+
+<tr class="last-content-row">
+    &nbsp;
+    {% block item-info-buttons %}
+        <td colspan=2>
+            <div class="product-catalog-buttons center-div prod-btns "> 
+                <a href="{{pItem.productUrl}}" class="btn btn-default">Go to Store</a>
+
+                <div class="dropdown">
+                    <button id="dLabel" data-target="#" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add To <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu scrollable-menu wishlist-to-add" role="menu" aria-labelledby="dLabel">
+                        {% for wishlist in wishlists %}
+                            <li>
+
+                                <form method="POST">
+
+                                     <input type="submit" class="wl btn btn-default btn-s" value="{{wishlist.name}}" wishlist-id={{wishlist.id}} cItem-id={{pItem.id}}></input>
+                                    {% csrf_token %}
+
+                                </form>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+
+            </div>
+        </td>
+    {% endblock item-info-buttons %}
+</tr>
+
+</table>
+
+<table class="col-lg-8 item-recommendation">
+  <th colspan=5>
+    Recommended Items:
+  </th>
+  <tr>
+    {% for rItem in four_results %}
+    <td class="ir-col">
+      <div class="item-recommendation-image">
+        <a href="{% url 'product' rItem.id %}">
+            <img src="{% url 'product-photo' rItem.id %}" class="ir-image">
+          <br>
+          <p class="ir-name">{{rItem.name}}<p>
+        </a>
+      </div>
+
+    </td>
+    {% endfor %}
+  </tr>
+</table>       
+{% endblock content %}

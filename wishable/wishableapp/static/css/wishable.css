@@ -1,0 +1,327 @@
+.content-bar{
+	background-color: #efefef;
+	height:35px;
+	text-transform: uppercase;
+	font-weight: bold;
+}
+
+.top{
+	border-bottom: 1px solid #f79b2e;
+}
+
+
+.sidebar{
+	border: 1px solid #e1358d;
+	margin-right: 40px;
+	border-radius: 5px;
+	background-color: #efefef;
+	padding: 10px;
+}
+
+.title-bar{
+	width: auto; 
+}
+
+.price-col{
+	width: 15%;
+}
+
+.instock-col{
+	width: 15%;
+}
+
+.item-info-body{
+	width: 100%;
+}
+
+.item-info-pic{
+	height: 150px;
+	width: 150px;
+	text-align: center;
+	padding: 10px;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.item-info-pic img{
+	height: 100%;
+	width: auto;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.item-info-description{
+	padding-left: 5px;
+	min-width: 40em;
+	height: 200px;
+	width: 580px;
+}
+
+.item-description{
+	min-height:30px;
+	margin-top: 10px;
+}
+
+.item-name{
+	font-size: 20px;
+	font-weight: bold;
+	margin-bottom: 0px;
+}
+
+table, td, th, tr{
+	/* For debugging */
+	/*border: 1px solid;*/
+}
+
+.in-line{
+	display: inline-block;
+}
+
+.last-content-row{
+	border-bottom: 1px solid #e7e7e7;
+}
+
+.edit-wishlist-btn{
+	margin: 20px;
+}
+
+.profile-sidebar{
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.item-info-text{
+	padding: 0 0 0 15px;
+	width: calc(100% - 200px);
+}
+
+.item-info-head{
+	padding-left:10px;
+}
+
+.preferred-stores{
+	text-align: center;
+	border: 1px dashed ;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+
+.preferred-stores ul{
+	list-style-type: none;
+	padding-left:0;
+}
+
+.item-name{
+	color: #e1358d;
+}
+
+.avatar{
+	height: 20px;
+	width: auto;
+}
+
+.avatarlg{
+	height: 40px;
+	width: auto;
+}
+
+.to-wl-text{
+	margin: 0px 50px 20px 0px;
+}
+
+.wishers-following li{
+	list-style-type: none;
+	margin: 10px 0px;
+}
+
+.catalog{
+	display: block;
+	margin: 0px auto;
+	padding: 20px;
+}
+
+
+.catalog input{
+	font-size: 16px;
+	color: #e1358d;
+	text-align: left;
+	font-weight: bold;
+	padding: 10px 20px;
+	width:100%;
+}
+
+.product-catalog-buttons .btn{
+	display: block;
+	margin: 5px 0px;
+	width:100%;
+
+}
+
+.product-catalog-buttons .um{
+	display: block;
+	width: 100%;
+	margin: 0px;
+
+}
+
+.searchbar-label{
+	margin: 5px auto;
+}
+
+.searchbar{
+	padding: 10px 0px;
+	margin-bottom: 10px;
+	border: solid 2px #e1358d;
+	border-radius: 9px;
+	background-color: #efefef;
+}
+
+.orange-btn{
+	background-color: #f79b2e;
+	color: #eee;
+}
+
+.new-wishlist{
+	font-size: 77px;
+	margin-left: 50px;
+}
+
+a.new-wishlist:hover {
+	color: black;
+}
+a.new-wishlist:focus{
+	color:black;
+}
+
+.new-wishlist-item-description{
+	margin-bottom:20px;
+}
+
+label {
+	margin-right: 40px;
+}
+
+ul.edit-wishlist-btns{
+	list-style: none;
+}
+
+.ew-btn{
+	display: block;
+	float: right;
+}
+
+.scrollable-menu {
+    height: auto;
+    max-height: 200px;
+    overflow-x: hidden;
+    width: 90%;
+}
+
+.wl{
+	border:none;
+}
+
+.wishlistName{
+	color: #e1358d;
+}
+
+a.wishlistName:hover{
+	color: #e1358d;
+	font-style: underline;
+}
+
+.toWishListItem{
+	color: #e1358d;
+}
+
+a.toWishListItem:hover{
+	color: #f79b2e;
+	font-style: underline;
+}
+
+.wItemPageInfo{
+	width:12%;
+	vertical-align: top;
+	padding-top:10px;
+}
+
+.wishlist-item-box{
+	background-color: #efefef;
+}
+
+.edit-wli{
+	margin: 10px 0px;
+}
+
+.item-recommendation{
+	background-color: #efefef;
+	margin-top: 50px;
+	margin-left:10px;
+	margin-right:10px;
+}
+
+.item-recommendation-image{
+	max-width: 140px;
+	max-height: 140px;
+	display: inline-block;
+	padding: 10px;
+}
+
+a.item-recommendation-image{
+	max-width: 140px;
+	max-height: 150px;
+	display: inline-block;
+}
+
+img.ir-image {
+	width: 140px;
+	height: auto;
+	display: inline-block;
+}
+
+
+.ir-name{
+	vertical-align: bottom;
+}
+
+a.goToProd{
+	color: #e1358d;
+}
+
+a.goToProd:hover{
+	color: #f79b2e;
+	font-style: underline;
+}
+
+.prod-btns{
+	margin:10px;
+	width: 200px;
+}
+
+
+.prod-info-pic{
+	height: 200px;
+	width: auto;
+	text-align: center;
+	padding: 10px;
+	margin: 0 auto;
+	vertical-align: top;
+}
+
+.prod-info-pic img{
+	height: 100%;
+	width: auto;
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.profile-pic{
+	width:30px;
+	height:30px;
+	position:relative;
+	top:-10px;
+}
+
+.user-info a{
+	vertical-align:middle;
+}

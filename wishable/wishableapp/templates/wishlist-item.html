@@ -1,0 +1,102 @@
+<!-- Make item-info more generic for each item -->
+<!-- Make item-info more organized and finish it  -->
+
+{% block item-info-head %}
+{% endblock item-info-head %}
+<tr wItemId={{wItem.id}}>
+    {% block item-info-description %}
+
+        <td rowspan=2 class="item-info-description">
+
+            {% block item-info-pic %}
+                <div class="item-info-pic in-line">            
+                    <img src="{% url 'product-photo' wItem.product.id %}">
+                    {% if not wItem.fairyGodMother.all %}
+                     <form method="post" action="{% url 'fairyGodMother' wItem.id %}">
+                        <button type="submit" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span> I'll buy this.</button>
+                        {% csrf_token %}
+                     </form>
+                    {% else %}
+                        <button type="button" class="btn btn-default btn-sm"><span class="glyphicon glyphicon glyphicon-star" aria-hidden="true"></span> Bought by user: {{ wItem.fairyGodMother.first }}</button>
+                    {% endif %}
+                </div>
+            {% endblock item-info-pic %}
+
+            <div class="item-info-text in-line">
+                {% block item-name %}
+                <h6 class="item-name"> 
+                    <a href="{% url 'wishlist-item' wItem.id %}" class="toWishListItem">
+                        {{ wItem.product.name }}
+                    </a>
+                </h6>
+                {% endblock item-name %}
+
+                {% block company-name %}
+                <small class="company-name">
+                        {{ wItem.product.company.name }}
+                <!-- need company in the product module -->
+                </small>
+                {% endblock company-name %}
+
+                <div class="item-description">
+                    {% block item-description %}
+                        {{ wItem.description }}
+                    {% endblock item-description %}
+                </div>
+            </div>
+        </td>
+    {% endblock item-info-description %}
+
+
+    {% block item-info-price %}
+    <td>
+        ${{ wItem.product.price |floatformat:2}}
+    </td>
+    {% endblock item-info-price %}
+
+    {% block item-info-instock %}
+    <td>
+        {% if wItem.product.available %}
+            In Stock
+        {% else %}
+            Out of Stock
+        {% endif %}
+    </td>
+    {% endblock item-info-instock %}
+
+</tr>
+
+
+<tr class="last-content-row" wItemId={{wItem.id}}>
+    &nbsp;
+    {% block item-info-buttons %}
+        <td colspan=2>
+            <div class="product-catalog-buttons center-div"> 
+                <a href="{{wItem.product.productUrl}}" class="btn btn-default">Go to Store</a>
+
+                <div class="dropdown">
+                    <button id="dLabel" data-target="#" type="button" class="btn btn-default" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Add To <span class="caret"></span>
+                    </button>
+                    <ul class="dropdown-menu scrollable-menu wishlist-to-add" role="menu" aria-labelledby="dLabel">
+                        {% for wishlist in requestUserWishlists %}
+                            <li>
+
+                                <form method="POST">
+
+                                     <input type="submit" class="wl btn btn-default btn-s" value="{{wishlist.name}}" wishlist-id={{wishlist.id}} cItem-id={{wItem.product.id}}></input>
+                                    {% csrf_token %}
+
+                                </form>
+                            </li>
+                        {% endfor %}
+
+                    </ul>
+                </div>
+                <button class="btn btn- delete-wli" wItemId={{wItem.id}}>Delete</button>
+
+            </div>
+        </td>
+    {% endblock item-info-buttons %}
+</tr>
+

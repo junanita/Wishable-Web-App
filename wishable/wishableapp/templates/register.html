@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% block title %}
+Wishable - Register
+{% endblock title %}
+
+{% block css %}
+	<link type="text/css" rel="stylesheet" href="../static/css/login.css" media="screen" />
+{% endblock css %}
+
+
+
+{% block active-tab %}
+{% endblock active-tab %}
+
+{% block right-active-tab %}
+  <li>
+    <a href="{% url 'login' %}">Login</a>
+  </li>
+  <li class="active-tab">
+    <a href="{% url 'register' %}">Register</a>
+  </li>
+{% endblock right-active-tab %}
+
+
+{% block sidebar %}
+{% endblock sidebar %}
+
+
+{% block content %}
+
+      
+    <form class="form-signin" method="post" action="{% url 'register' %}">  
+
+          <div class="blog-header">
+            <h1 class="logintitle">Register</h1>
+        	</div>
+        	
+
+          {% for field in form %}
+               <div>
+                <label for="{{ field.id_for_label }}" > {{field.label_tag}}</label>
+                {{ field}}
+               </div>
+
+                <h4 style="color: red">
+                    {{ field.errors }}
+                </h4>
+          {% endfor %}
+         
+          <button class="btn btn-lg btn-primary btn-block" type="submit">Register</button>
+          </br>
+        {% csrf_token %}
+
+
+
+{% endblock content %}
+
+
+

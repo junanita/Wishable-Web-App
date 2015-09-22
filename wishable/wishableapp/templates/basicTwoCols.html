@@ -1,0 +1,60 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block customcss %}
+    <link type="text/css" rel="stylesheet" href="{% static "css/wishable.css" %}"/>
+    <link href="../static/css/shop-homepage.css" rel="stylesheet">
+
+{% endblock customcss %}
+
+    {% block title %}
+    Wishable - Basic Right Col
+    {% endblock title %}
+
+
+    {% block content %}
+    <table>
+
+        {% block searchbar %}
+        {% endblock searchbar %}
+
+    	<tr class="content-bar top"> 
+    		<td class='title-bar'> 
+                &nbsp;
+                {% block content-bar-name %} 
+                    Title
+                {% endblock content-bar-name %} 
+            </td>
+            <td class="price-col"> 
+                {% block price %} 
+                    &nbsp;
+                    Price
+                {% endblock price %} 
+            </td>	       	
+            <td class="instock-col"> 
+                {% block instock %} 
+                    &nbsp;
+                    In Stock
+                {% endblock instock %} 
+            </td>
+        </tr>
+        <tr class="content-row"> 
+            <td> 
+                 &nbsp;
+                <!-- Insert content here -->
+                {% block content-list %}
+
+                    {% include "item-info.html" %}
+
+                {% endblock content-list %}
+            </td>
+        </tr>
+        <tr class="content-bar bottom" > 
+            <td colspan=3>
+                 &nbsp;
+            </td>
+        </tr>                
+	</table>           
+
+    {% endblock content %}

@@ -1,0 +1,397 @@
+[
+   {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 1,
+    "fields": {
+      "name": "Amazon",
+      "baseUrl": "http://www.amazon.com"
+    }
+  },
+
+  {
+    "__comment": "For nameAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 1,
+    "fields": {
+      "_tag": "div",
+      "_id": "",
+      "_class": "product-info", 
+      "_customAttr": "itemprop", 
+      "_customVal": "name"
+    } 
+  },
+  {
+    "__comment": "For priceAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 2,
+    "fields": {
+      "_tag": "div",
+      "_id": "",
+      "_class": "price-sale", 
+      "_customAttr": "itemprop", 
+      "_customVal": "price"
+    } 
+  },
+  {
+    "__comment": "For descAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 3,
+    "fields": {
+      "_tag": "div",
+      "_id": "description",
+      "_class": "description", 
+      "_customAttr": "itemprop", 
+      "_customVal": "description"
+    } 
+  },
+
+   {
+    "__comment": "For imageAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 4,
+    "fields": {
+      "_tag": "div",
+      "_id": "",
+      "_class": "primary", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 2,
+    "fields": {
+      "name": "Century 21",
+      "baseUrl": "http://www.c21stores.com",
+      "nameAttrTag": 1,
+      "priceAttrTag": 2,
+      "descAttrTag": 3,
+      "imageAttrTag": 4
+    }
+  },
+  {
+    "__comment": "For nameAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 5,
+    "fields": {
+      "_tag": "h1",
+      "_id": "",
+      "_class": "product-title", 
+      "_customAttr": "itemprop", 
+      "_customVal": "name"
+    } 
+  },
+  {
+    "__comment": "For priceAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 6,
+    "fields": {
+      "_tag": "div",
+      "_id": "PriceMargin",
+      "_class": "", 
+      "_customAttr": "itemprop", 
+      "_customVal": "offerDetails"
+    } 
+  },
+  {
+    "__comment": "For descAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 7,
+    "fields": {
+      "_tag": "span",
+      "_id": "product_overview",
+      "_class": "productFontColor", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+   {
+    "__comment": "For imageAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 8,
+    "fields": {
+      "_tag": "li",
+      "_id": "liImageButton_0",
+      "_class": "", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 3,
+    "fields": {
+      "name": "Forever 21",
+      "baseUrl": "http://www.forever21.com",
+      "nameAttrTag": 5,
+      "priceAttrTag": 6,
+      "descAttrTag": 7,
+      "imageAttrTag": 8
+    }
+  },
+  {
+    "__comment": "For nameAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 9,
+    "fields": {
+      "_tag": "span",
+      "_id": "",
+      "_class": "fn", 
+      "_customAttr": "itemprop", 
+      "_customVal": "name"
+    } 
+  },
+  {
+    "__comment": "For priceAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 10,
+    "fields": {
+      "_tag": "span",
+      "_id": "",
+      "_class": "offerPrice", 
+      "_customAttr": "itemprop", 
+      "_customVal": "price"
+    } 
+  },
+  {
+    "__comment": "For descAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 11,
+    "fields": {
+      "_tag": "ul",
+      "_id": "",
+      "_class": "normal-list", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+   {
+    "__comment": "For imageAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 12,
+    "fields": {
+      "_tag": "img",
+      "_id": "heroImage",
+      "_class": "rolloverzoom", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 4,
+    "fields": {
+      "name": "Target",
+      "baseUrl": "http://www.target.com",
+      "nameAttrTag": 9,
+      "priceAttrTag": 10,
+      "descAttrTag": 11,
+      "imageAttrTag":12
+    }
+  },
+  {
+    "__comment": "For nameAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 13,
+    "fields": {
+      "_tag": "h1",
+      "_id": "",
+      "_class": "product-name", 
+      "_customAttr": "class", 
+      "_customVal": "product-heading"
+    } 
+  },
+  {
+    "__comment": "For priceAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 14,
+    "fields": {
+      "_tag": "div",
+      "_id": "",
+      "_class": "js-price-display price price-display", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+  {
+    "__comment": "For descAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 15,
+    "fields": {
+      "_tag": "div",
+      "_id": "",
+      "_class": "product-short-description module", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+   {
+    "__comment": "For imageAttrTag",
+    "model": "wishableapp.htmlelem",
+    "pk": 16,
+    "fields": {
+      "_tag": "a",
+      "_id": "",
+      "_class": "product-thumb js-product-thumb Selector active", 
+      "_customAttr": "", 
+      "_customVal": ""
+    } 
+  },
+
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 5,
+    "fields": {
+      "name": "Walmart",
+      "baseUrl": "http://www.walmart.com",
+      "nameAttrTag": 13,
+      "priceAttrTag": 14,
+      "descAttrTag": 15,
+      "imageAttrTag": 16
+    }
+  },
+  {
+    "__comment": "For Product",
+    "model": "wishableapp.product",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "company": 1,
+      "name": "Blue Sweater",
+      "productUrl": "http://www.amazon.com/Hee-Grand-Pattern-Jumper-Sweater/dp/B00INUABD0/ref=sr_1_3?ie=UTF8&qid=1428558050&sr=8-3&keywords=blue+sweater",
+      "price": 10.00,
+      "description": "The sexiest blue sweater in the world. It can be yours!",
+      "product_type": "clothes"
+    }
+  },  
+  {
+    "__comment": "For Product",
+    "model": "wishableapp.product",
+    "pk": 2,
+    "fields": {
+      "user": 1,
+      "company": 1,
+      "name": "Yellow Sweater",
+      "productUrl": "http://www.amazon.com/Hee-Grand-Pattern-Jumper-Sweater/dp/B00INUABD0/ref=sr_1_3?ie=UTF8&qid=1428558050&sr=8-3&keywords=blue+sweater",
+      "price": 10.00,
+      "description": "The sexiest yellow sweater in the world. It can be yours!",
+      "product_type": "clothes"
+    }
+  },
+  {
+    "__comment": "For Product",
+    "model": "wishableapp.product",
+    "pk": 3,
+    "fields": {
+      "user": 1,
+      "company": 1,
+      "name": "Pink Sweater",
+      "productUrl": "http://www.amazon.com/Hee-Grand-Pattern-Jumper-Sweater/dp/B00INUABD0/ref=sr_1_3?ie=UTF8&qid=1428558050&sr=8-3&keywords=blue+sweater",
+      "price": 10.00,
+      "description": "The sexiest pink sweater in the world. It can be yours!",
+      "product_type": "clothes"
+    }
+  },
+  {
+    "__comment": "For Product",
+    "model": "wishableapp.product",
+    "pk": 4,
+    "fields": {
+      "user": 1,
+      "company": 1,
+      "name": "Cool Black Camera",
+      "productUrl": "http://www.amazon.com/Fujifilm-Instax-Mini-Instant-Pink/dp/B009ZM9R4O/ref=sr_1_3?s=photo&ie=UTF8&qid=1428558258&sr=1-3&keywords=camera",
+      "price": 399.00,
+      "description": "The best camera that has x-ray vision and infared. It can be yours!",
+      "product_type": "electronics"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 6,
+    "fields": {
+      "name": "LuLus",
+      "baseUrl": "https://www.lulus.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 7,
+    "fields": {
+      "name": "Macys",
+      "baseUrl": "http://www1.macys.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 8,
+    "fields": {
+      "name": "Costco",
+      "baseUrl": "http://www.costco.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 9,
+    "fields": {
+      "name": "Kohls",
+      "baseUrl": "http://www.kohls.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 10,
+    "fields": {
+      "name": "Bed Bath & Beyond",
+      "baseUrl": "http://www.bedbathandbeyond.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 11,
+    "fields": {
+      "name": "Hot Topic",
+      "baseUrl": "http://www.hottopic.com"
+    }
+  },
+  {
+    "__comment": "For Company",
+    "model": "wishableapp.company",
+    "pk": 12,
+    "fields": {
+      "name": "Bass Pro Shops",
+      "baseUrl": "http://www.basspro.com/"
+    }
+  },
+  {
+    "__comment": "For Product",
+    "model": "wishableapp.product",
+    "pk": 5,
+    "fields": {
+      "user": 1,
+      "company": 12,
+      "name": "Strike King KVD Rattling Square Bill Crankbaits",
+      "productUrl": "http://www.basspro.com/Strike-King-KVD-Rattling-Square-Bill-Crankbaits/product/10209674/?cmCat=CROSSSELL_HOMEPAGE",
+      "price": 6.39,
+      "description": "Hard Bait Lure",
+      "product_type": "misc"
+    }
+  }
+]
+

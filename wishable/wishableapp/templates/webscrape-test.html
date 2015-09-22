@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+{% block scripts %}
+<!-- <script src="../static/js/webscrape.js"></script> -->
+{% endblock scripts %}
+
+  {% block sidebar %}
+  {% endblock sidebar %}
+  {% block content %}
+    <div class="col-md-12 sidebar">
+      <p class="lead">Webscrape Demo</p>
+
+      {% if link_form %}
+
+      <form method="post" action="{% url 'demo' %}" id="link-drop">
+        {% csrf_token %}
+        {{link_form.as_p}}
+        <input type="submit" class="btn btn-primary btn-lg">
+
+
+
+        <!-- Button trigger modal -->
+        <!-- <input type="submit" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal"> -->
+
+        <!-- Modal -->
+<!--         <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Add Item - Edit Results</h4>
+              </div>
+              <div class="modal-body">
+                <b>Company:</b> {{company}} <br>
+                <b>Product Name:</b> {{name}} <br>
+                <b>Price:</b> {{price}} <br>
+                <b>Description:</b> {{desc}} 
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save</button>
+              </div>
+            </div>
+          </div>
+        </div>
+ -->        
+      </form>
+
+      <hr>
+
+      {% endif %}
+
+
+<!--       <div>
+        <h3>The company is: {{company}}</h3>
+        <h3>The product name is: {{name}}</h3>
+        <h3>The product price is: {{price}} </h3>
+        <h3>The product description is: {{desc}} </h3>
+      </div>
+ -->
+
+
+    {% if item_form %}
+    {% if errors %}
+        <p style="color:red">
+            {{errors}}
+        </p>
+    {% endif %}
+
+    <form method="post" action="{% url 'demo' %}" id="link-drop">
+      {% csrf_token %}
+      {% if image_src != "" %}
+        <div>
+         <img src="{{image_src}}" height="200" /> 
+        </div>      
+      {% endif %}
+      {% for field in item_form.visible_fields %}
+       <div>
+        <label for="{{ field.id_for_label }}">{{field.label_tag}}</label>
+        {{ field }}
+       </div>
+        <h5 style="color: red">
+            {{ field.errors }}
+        </h5>
+      {% endfor %}
+      <input type="submit" class="btn btn-primary btn-lg">
+    </form>
+
+    {% endif %}
+
+
+    </div>
+  {% endblock content %}

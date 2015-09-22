@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+
+{% block title %}
+Wishable - Login
+{% endblock title %}
+
+{% block css %}
+	<link type="text/css" rel="stylesheet" href="../static/css/login.css" media="screen" />
+{% endblock css %}
+
+
+
+{% block active-tab %}
+{% endblock active-tab %}
+
+{% block right-active-tab %}
+  <li class="active-tab">
+    <a href="{% url 'login' %}">Login</a>
+  </li>
+  <li>
+    <a href="{% url 'register' %}">Register</a>
+  </li>
+{% endblock right-active-tab %}
+
+{% block sidebar %}
+{% endblock sidebar %}
+
+
+{% block content %}
+
+      
+<form class="form-signin" method = "post" action = "{% url 'django.contrib.auth.views.login' %}">  
+
+  <div class="blog-header">
+
+    <h1 class="logintitle">Login</h1>
+  </div>
+  
+  <div>
+    <label for="{{ form.username.id_for_label }}" > {{form.username.label_tag}}</label>
+    {{ form.username }}
+  </div>
+  <h4 style="color: red">
+    {{ form.username.errors }}
+  </h4>
+
+  <div>
+    <label for="{{ form.password.id_for_label }}" > {{form.password.label_tag}}</label>
+    {{ form.password }}
+  </div>
+  <h4 style="color: red">
+    {{ form.password.errors }}
+  </h4>
+       
+  <button class="btn btn-lg btn-primary btn-block color" type="submit">Sign in</button>
+  <div class="register-link">
+    <a  href="{% url 'register' %}">Not yet registered?</a>
+  </div>
+  <input type="hidden" name="next" value="{{ next }}" />
+  {% csrf_token %}
+
+</form>   
+
+
+
+{% endblock content %}
+
+
+

@@ -1,0 +1,52 @@
+
+<div class="wishlist-info" wId={{wishlist.id}}>
+<br>
+    {% block item-info-head %}
+        {% if page != "profile" and page != "wishlist" %}
+            <h6><img class="avatar" src="../static/css/person.png"> {{ user }} just added: </h6>
+        {% endif %}
+    {% endblock item-info-head %}
+
+    {% block item-info-description %}
+
+    <ul class="edit-wishlist-btns">
+
+        <li>
+
+             <button id="wishListID" type="submit" class="btn btn-default ew-btn" data-toggle="modal" data-target="#editWishList">
+                <span class="glyphicon glyphicon-pencil"></span>
+            </button>
+
+            {% include 'editWishList.html' %}
+            
+        </li>
+
+        <li>
+            <button class="btn btn-default ew-btn delete-wishlist" wId={{wishlist.id}}> 
+                <span class="glyphicon glyphicon-trash"></span>
+            </button>
+        </li>
+    </ul>
+    <div class="item-info-text in-line">
+        {% block item-name %}
+        <h6 class="item-name">
+            <a href="{% url 'wishlist' wishlist.id %}" class="wishlistName">{{ wishlist.name }}</a>
+            
+            {% if wishlist.private %}
+                <span class="label label-warning">Private</span>
+            {% endif %}
+        </h6>
+
+        {% endblock item-name %}
+
+        <div class="new-wishlist-item-description">
+            {% block item-description %}
+                {{ wishlist.description }}
+            {% endblock item-description %}
+        </div>
+    </div>
+
+<hr>
+    {% endblock item-info-description %}
+</div>
+

@@ -1,0 +1,167 @@
+{% extends "basicTwoCols.html" %}
+
+{% block title %}
+Wishable - Wishing Well
+{% endblock title %}
+
+{% block js %}
+<script src="../static/js/wishing-well.js"></script>
+{% endblock js %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+ <li>
+    <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+</li>
+  <li>
+      <a href="{% url 'profile' user %}">Wishlists</a>
+  </li>
+  <li class="active-tab">
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+{% block sidebar-content %}
+	
+	<div class="profile-sidebar">
+	    <h5 align="center"> Wishers You Follow </h5>
+	    <br> 
+	    <div class="wishers-following">
+	    	<ul>
+  	    		{% for followee in followees %}
+    			<li>  
+	    			{% if followee.picture %}
+	    			  <img id= "followee.id" class="avatarlg" src="{% url 'photo' followee.id %}" width="200px">
+	    			  <a href="{% url 'profile' followee.user %}">{{ followee.user }} </a> 
+	    			{% else %}
+	    			  <img class="avatarlg" src="../static/css/person.png"/>
+	    			  <a href="{% url 'profile' followee.user %}">{{ followee.user }} </a> 
+	    			{% endif %}
+   	    			
+	    			 {% if userOperateProfile != followee %}
+		    			<form method="post" action="{% url 'unfollow' followee.user %}" class="in-line">
+		    			<button id="follow" type="submit" class="btn btn-default btn-xs"> Unfollow </button>
+		    			{% csrf_token %}
+		    			</form>
+		    		 {% endif %}
+		    	</li>
+    			
+	    		{% endfor %}
+	    	</ul>
+	    </div>
+	 </div>
+
+{% endblock sidebar-content %}
+
+{% block content-bar-name %} 
+    Wishing Well
+{% endblock content-bar-name %} 
+
+{% block searchbar %}
+<tr>
+	<td colspan=3>
+		<div class="searchbar">
+			<form method="post" id="user-search">
+        		{% if search_form.search.errors %}
+        			<p style="color:red">
+            			{{search_form.search.errors}}
+        			</p>
+				{% endif %}
+				<div class="col-sm-10">
+			 	{% if search_form %}
+			 		{{search_form.search}}
+			 	{% endif %}
+			 	</div>
+				<button type="button" class="btn orange-btn" id="userSearchBtn" data-toggle="modal" data-target="#userSearch">
+					<span class="glyphicon glyphicon-search" aria-hidden="true" data-toggle="tooltip" data-placement="bottom" title="Search"></span>
+				</button>
+
+            <!-- Modal -->
+            <div class="modal fade" id="userSearch" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+              <div class="modal-dialog">
+                <div class="modal-content">
+
+                  <form method="post" id="search-users">
+                    <div class="modal-header">
+                      <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                      <h4 class="modal-title" id="myModalLabel">User Search Results</h4>
+                    </div>
+                    <div class="modal-body new-prod-modal">
+                      {% csrf_token %}
+
+            	{% if searchResults %}
+            		{% if errors %}
+	        			<p style="color:red">
+	            			{{errors}}
+	        			</p>
+    				{% endif %}
+					{% for foundUser in searchResults %}
+					<div class="user-result">
+						<div class="user-info">
+						{% if foundUser.profile.picture %}
+						  <img class="profile-pic" align="left" id= "foundUser.profile.id" src="{% url 'photo' foundUser.profile.id %}" width="200px">
+						{% else %}
+						  <img class="profile-pic" align="left" src="../static/css/person.png"/>
+						{% endif %}
+						</div>
+
+						{% if foundUser.username != user.username %}
+						  {% if foundUser not in user.profile.following %}
+						    <form method="post" action="{% url 'follow' foundUser %}">
+						    {{ followForm }}
+						    <input id="follow" type="submit" class="btn btn-default" value="Follow" />
+						    {% csrf_token %}
+						    </form>
+						  {% else %}
+						    <form method="post" action="{% url 'unfollow' foundUser %}">
+						    {{ followForm }}
+						    <input id="follow" type="submit" class="btn btn-default" value="Unfollow" />
+						    {% csrf_token %}
+						    </form>
+						  {% endif %} 
+						{% endif %}
+
+					</div>
+					{% endfor %}
+
+
+ 				{% endif %}
+
+                    </div>
+               
+                  </form>
+                </div>
+              </div>
+            </div>
+
+            <!-- End Modal -->
+
+
+			</form>
+		</div>
+	</td>
+<tr>
+{% endblock searchbar %}
+
+{% block content-list %}
+
+	{% if wishListItems.count > 0 %}
+
+		{% for wishListItem in wishListItems %}
+			{% include "wishingwell-item.html" %}
+		{% endfor %}
+
+	{% else %}
+		<h2> The first follower is yourself :) <h2>
+		<h3> But you haven't add anything into your wishlist </h3>
+	{% endif %}
+{% endblock content-list %}
+
+{% block price %} 
+{% endblock price %} 
+
+{% block instock %} 
+{% endblock instock %} 
+

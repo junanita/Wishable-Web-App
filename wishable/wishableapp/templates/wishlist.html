@@ -1,0 +1,99 @@
+{% extends "basicTwoCols.html" %}
+
+{% block js %}
+<script src="../static/js/wishlist.js"></script>
+
+{% endblock js %}
+
+{% block title %}
+Wishable - Wishlist
+{% endblock title %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+  <li>
+      <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+  </li>
+  <li class="active-tab">
+      <a href="{% url 'profile' user %}">Wishlists</a>
+  </li>
+  <li>
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+{% block sidebar-content %}
+  <div class="profile-sidebar">
+
+    <div class="item-info-pic">
+    {% if userProfile.picture %}
+      <img class="item-info-pic" align="center" id= "userProfile.id" src="{% url 'photo' userProfile.id %}" width="200px">
+    {% else %}
+      <img class="item-info-pic" align="center" src="../static/css/pika.png"/>
+    {% endif %}
+    </div>
+
+    <hr style="border-top:1px solid #EAC2DD;">
+
+  <!-- user cannot press "follow" button on their own profile -->
+  <!-- user can only follow the user who is not in his/her followee list -->
+
+    <h5 align="center"> User Information </h5>
+
+    <div class="profile-information" align="center">
+      <tr>
+          <td class="form_label_tag">Username: </td>
+          <td class="modal_field"> {{userProfile.user.username}}</td>
+          <br>
+          <td class="form_label_tag">Age: </td>
+          <td class="modal_field"> {{userProfile.age}}</td>
+          <br>
+          <td class="form_label_tag">Bio: </td>
+          <td class="modal_field"> {{userProfile.bio}}
+          </td>
+      </tr>
+    </div>
+
+    {% include "editProfile.html"%}
+
+    <hr style="border-top:1px solid #EAC2DD;">
+
+    <div class="preferred-stores">
+     <h5> Preferred Stores </h5>
+     <ul>
+       {% for company in userProfile.prefCompanies.all %}
+       <li> <a href="{{company.baseUrl}}">{{company.name}}</a> </li>
+       {% endfor %}
+     </ul>
+    </div>
+  </div>
+
+
+{% endblock sidebar-content %}
+
+
+
+{% block content-bar-name %} 
+
+    {{wishlist.name}}
+
+{% endblock content-bar-name %} 
+
+
+{% block content-list %}
+
+  {% for wItem in wishlistItems %}
+    
+    {% include "wishlist-item.html" %}
+
+  {% empty %}
+  <tr>
+      <td colspan=3>
+          <h5> Sorry there are no items in this wishlist </h5>
+      </td>
+  </tr>
+  {% endfor %}
+
+{% endblock content-list %}

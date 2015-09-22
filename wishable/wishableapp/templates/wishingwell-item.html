@@ -1,0 +1,49 @@
+
+    {% block item-info-head %}
+    <tr>
+        <td colspan=3 class="item-info-head">
+            <h6><img class="avatar" src="../static/css/person.png"> <a href="{% url 'profile' wishListItem.wishlist.owner.user %}">{{ wishListItem.wishlist.owner.user }}</a> just added: </h6>
+        </td>
+    </tr>
+    {% endblock item-info-head %}
+
+    <tr>
+        {% block item-info-description %}
+            <td class="item-info-description">
+                {% block item-info-pic %}
+                    <div class="item-info-pic in-line">            
+                        <img src="{% url 'product-photo' wishListItem.product.id %}"/>
+                    </div>
+                {% endblock item-info-pic %}
+
+                <div class="item-info-text in-line">
+                    {% block item-name %}
+                    <h6 class="item-name">
+                        {{ wishListItem.product.name }} 
+                    </h6>
+                    {% endblock item-name %}
+
+                    {% block company-name %}
+                    <small class="company-name">
+                            {{ wishListItem.product.company.name }}
+                    </small>
+                    {% endblock company-name %}
+
+                    <div class="item-description">
+                        {% block item-description %}
+                            {{ wishListItem.product.description }}
+                        {% endblock item-description %}
+                    </div>
+                </div>
+            </td>
+        {% endblock item-info-description %}
+    </tr>
+
+    <tr class="last-content-row">
+        &nbsp;
+        {% block item-info-buttons %}
+            <td>
+                <div class="to-wl-text pull-right"> to WISHLIST <a href="{% url 'wishlist' wishListItem.wishlist.id %}">{{ wishListItem.wishlist.name }}</a></div>
+            </td>
+        {% endblock item-info-buttons %}
+    </tr>

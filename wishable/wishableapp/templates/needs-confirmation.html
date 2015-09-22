@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+  {% block title %}
+  Wishable - Confirm Registration
+  {% endblock title %}
+
+    {% block active-tab %}
+    {% endblock active-tab %}
+    {% block right-active-tab %}
+    {% endblock right-active-tab %}
+
+  {% block sidebar %}
+  {% endblock sidebar %}
+
+
+{% block content %}
+  <div class="container col-md-8">
+    <p>
+      A confirmation email has been sent to {{email}}.  Please click the link
+      in that email to confirm your email address and complete your registation for your address book.
+    </p>
+  </div>
+{% endblock content %}
+

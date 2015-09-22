@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+
+{% block js %}
+<!-- <script src="../static/js/profile.js"></script> -->
+{% endblock js %}
+
+{% block title %}
+Wishable - Profile
+{% endblock title %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+  <li class="active-tab">
+      <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+  </li>
+  <li>
+      <a href="{% url 'profile' user %}">Wishlists</a>
+  </li>
+  <li>
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+{% block sidebar-content %}
+    
+  <div class="profile-sidebar">
+    <div class="item-info-pic">
+      <img src="../static/css/pika.png"/>
+    </div>
+    <br>
+
+    <!-- user cannot press "follow" button on their own profile -->
+    <!-- user can only follow the user who is not in his/her followee list -->
+
+
+    <h5 align="center"> User Information </h5>
+    <div class="profile-information">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque eleifend pulvinar mi nec consequat. Donec varius tincidunt porttitor. Mauris suscipit mi quis ligula fringilla, id varius diam consequat. 
+    </div>
+    <br>
+    <div class="preferred-stores">
+      <h5> Preferred Stores </h5>
+      <ul>
+        <li> Store1 </li>
+        <li> Store2 </li>
+        <li> Store3 </li>
+        <li> Store4 </li>
+      </ul>
+    </div>
+   </div>
+
+{% endblock sidebar-content %}
+
+
+{% block content %}
+<table class="col-lg-8 wishlist-item-box"> 
+<form method="post" action="{% url 'wishlist-item' wlItem.id %}">
+
+<tr wItemId={{wItem.id}}>
+    {% block item-info-description %}
+        <td rowspan=2 class="item-info-description">
+
+            {% block item-info-pic %}
+                <div class="item-info-pic in-line">            
+                    <img src="{% url 'product-photo' wItem.id %}">
+                </div>
+            {% endblock item-info-pic %}
+
+            <div class="item-info-text in-line">
+                {% block item-name %}
+                <h6 class="item-name"> 
+                    {{ wItem.name }}
+                </h6>
+                {% endblock item-name %}
+
+                {% block company-name %}
+                <small class="company-name">
+                        {{ wItem.company }}
+                <!-- need company in the product module -->
+                </small>
+                {% endblock company-name %}
+
+                <div class="item-description">
+                    {% block item-description %}
+                       {{form.description.label_tag}}
+                       <br>
+                       {{form.description}}
+                    {% endblock item-description %}
+
+                </div>
+                <div class=""> 
+                      <input class='btn btn-default edit-wli pull-right' type="submit" value="Update" />  {% csrf_token %}
+                </div>
+            </div>
+        </td>
+    {% endblock item-info-description %}
+
+</tr>
+
+<tr class="last-content-row" >
+    &nbsp;
+    {% block item-info-buttons %}
+
+    {% endblock item-info-buttons %}
+</tr>
+</form>
+
+</table>
+
+<table class="col-lg-8 item-recommendation">
+  <th colspan=5>
+    Recommended Items:
+  </th>
+  <tr>
+    {% for rItem in four_results %}
+    <td class="ir-col">
+      <div class="item-recommendation-image">
+        <a href="{% url 'product' rItem.id %}">
+            <img src="{% url 'product-photo' rItem.id %}" class="ir-image">
+          <br>
+          <p class="ir-name">{{rItem.name}}<p>
+        </a>
+      </div>
+
+    </td>
+    {% endfor %}
+  </tr>
+</table>       
+{% endblock content %}

@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% load staticfiles %}
+
+  {% block title %}
+  Wishable - Welcome to Wishable!
+  {% endblock title %}
+
+    {% block active-tab %}
+    {% endblock active-tab %}
+    {% block right-active-tab %}
+    {% endblock right-active-tab %}
+
+  {% block sidebar %}
+  {% endblock sidebar %}
+
+
+{% block content %}
+  <div class="container col-md-8">
+    <p>
+      Welcome to Wishable! Thank you for confirming your email address.
+      Please <a href="{% url 'login' %}">login</a> to access your Wishlists.
+    </p>
+  </div>
+{% endblock content %}

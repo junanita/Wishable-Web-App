@@ -1,0 +1,22 @@
+{% if searchResults %}
+            		{% if errors %}
+	        			<p style="color:red">
+	            			{{errors}}
+	        			</p>
+    				{% endif %}
+					{% for foundUser in searchResults %}
+					<div class="user-result">
+						<div class="user-info">
+						{% if foundUser.profile.picture %}
+						  <img class="profile-pic" align="left" id= "foundUser.profile.id" src="{% url 'photo' foundUser.profile.id %}" width="200px">
+						{% else %}
+						  <img class="profile-pic" align="left" src="../static/css/person.png"/>
+						{% endif %}
+							<a href="{% url 'profile' foundUser %}"><h6>{{foundUser}}</h6></a>
+						</div>
+					</div>
+					<br>
+					{% endfor %}
+
+
+ 				{% endif %}

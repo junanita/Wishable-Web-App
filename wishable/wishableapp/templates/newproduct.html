@@ -1,0 +1,29 @@
+<div class="scraped-prod-info">
+	{% if errors %}
+		<p style="color:red">
+			{{errors}}
+		</p>
+	{% endif %}
+	{% if image_src and image_src != "" %}
+        <div>
+         <img src="{{image_src}}" height="200" /> 
+        </div>      
+    {% endif %}
+	{% for field in item_form.visible_fields %}
+		<div>
+			<label for="{{ field.id_for_label }}">{{field.label_tag}}</label>
+			{{ field }}
+		</div>
+		<h5 style="color: red">
+		    {{ field.errors }}
+		</h5>
+	{% empty %}
+		<div>
+			<h5 style="color: #f79b2e">
+				This item is already in our database. Please try searching instead.
+			</h5>
+		</div>
+	{% endfor %}
+		<input type="submit" class="btn btn-primary btn-lg" id="add-new-prod">
+		<input type="submit" class="btn btn-primary btn-lg modal-close" data-dismiss="modal" value="Start Over"/>
+<div>

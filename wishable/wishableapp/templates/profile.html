@@ -1,0 +1,172 @@
+{% extends "base.html" %}
+
+{% block js %}
+<script src="../static/js/profile.js"></script>
+{% endblock js %}
+
+{% block title %}
+Wishable - Profile
+{% endblock title %}
+
+{% block active-tab %}
+  <li>
+      <a href="{% url 'home' %}">Home</a>
+  </li>
+  <li>
+      <a href="{% url 'catalog' prodtype='all' %}">Catalog</a>
+  </li>
+  <li class="active-tab">
+      <a href="{% url 'profile' userOperate %}">Wishlists</a>
+  </li>
+  <li>
+      <a href="{% url 'wishing-well' %}">Wishing Well</a>
+  </li>
+{% endblock active-tab %}
+
+{% block sidebar-content %}
+
+<div class="profile-sidebar">
+
+  <div class="item-info-pic">
+  {% if userProfile.picture %}
+    <img class="item-info-pic" align="center" id= "userProfile.id" src="{% url 'photo' userProfile.id %}" width="200px">
+  {% else %}
+    <img class="item-info-pic" align="center" src="../static/css/pika.png"/>
+  {% endif %}
+  </div>
+
+
+<!-- user cannot press "follow" button on their own profile -->
+<!-- user can only follow the user who is not in his/her followee list -->
+  {% if userOperate != user %}
+    {% if not isFollowed %}
+      <form method="post" action="{% url 'follow' userWantFollow %}">
+      {{ followForm }}
+      <input id="follow" type="submit" class="btn btn-default"  style=" display: block; margin-left: auto; margin-right: auto;" value="Follow" />
+      {% csrf_token %}
+      </form>
+    {% else %}
+      <form method="post" action="{% url 'unfollow' userWantUnfollow %}">
+      {{ followForm }}
+      <input id="follow" type="submit" class="btn btn-default"  style=" display: block; margin-left: auto; margin-right: auto;" value="Unfollow" />
+      {% csrf_token %}
+      </form>
+    {% endif %} 
+  {% endif %}
+
+  <hr style="border-top:1px solid #EAC2DD;">
+
+  <h5 align="center"> User Information </h5>
+
+  <div class="profile-information" align="center">
+    <tr>
+        <td class="form_label_tag">Username: </td>
+        <td class="modal_field"> {{userProfile.user.username}}</td>
+        <br>
+        <td class="form_label_tag">Age: </td>
+        <td class="modal_field"> {{userProfile.age}}</td>
+        <br>
+        <td class="form_label_tag">Bio: </td>
+        <td class="modal_field"> {{userProfile.bio}}
+        </td>
+    </tr>
+  </div>
+
+  {% include "editProfile.html"%}
+
+  <hr style="border-top:1px solid #EAC2DD;">
+
+  <div class="preferred-stores">
+   <h5> Preferred Stores </h5>
+   <ul>
+     {% for company in userProfile.prefCompanies.all %}
+     <li> <a href="{{company.baseUrl}}">{{company.name}}</a></li>
+     {% endfor %}
+   </ul>
+  </div>
+</div>
+
+{% endblock sidebar-content %}
+
+
+{% block content %}
+<table class="col-lg-8">
+      <tr class="content-bar top"> 
+        <td class='title-bar-profile' colspan=3> 
+                &nbsp;
+                {% block content-bar-name %} 
+                    Wishlists
+                {% endblock content-bar-name %} 
+        </td>       
+      </tr>
+
+      <!-- user can only add new wishlists on their own profile  -->
+      {% if userOperate == user %}
+      <tr> 
+        <td class="add-wishlist-row">
+          <a href="" class="new-wishlist" data-toggle="modal" data-target="#newWishList">
+            <span class="glyphicon glyphicon-plus aria-hidden="true"">
+            </span>
+            New Wishlist
+          </a>
+
+          <!-- Modal -->
+          <div class="modal fade" id="newWishList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+              <div class="modal-content">
+
+                <form action="{% url 'profile' user %}" method="post">
+                  <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel">Create a new wishlist</h4>
+                  </div>
+                  <div class="modal-body new-wishlist-modal">
+                    {% csrf_token %}
+                  <table>
+                      {% for field in form %}
+                      <tr>
+                          <td class="form_label_tag">{{field.label_tag}}</td>
+                          <td class="modal_field"> {{field}}</td>
+                          <td style="color: red">{{field.errors}}</td>
+                      </tr>
+                      {% endfor %}
+                  </table>
+                  </div>
+
+                  <div class="modal-footer">
+                    <input type="submit" class="btn btn-default modal-close" data-dismiss="modal" value="Close"/>
+                    <input type="submit" class="btn btn-primary" value="Save"/>
+                  </div>
+
+                </form>
+              </div>
+            </div>
+          </div>
+        </td>
+      </tr>
+      {% endif %}
+
+      <tr class="content-row"> 
+          <td colspan=3> 
+               &nbsp;
+              <!-- private wishlist can only seen by yourself -->
+              {% block content-list %}
+                  {% for wishlist in wishlists %}
+                    {% if userOperate == user %}
+                      {% include "wishlist-info.html" %}
+                    {% else %}
+                      {% if wishlist.private == False %}
+                        {% include "wishlist-info.html" %}
+                      {% endif %}
+                    {% endif %}
+                  {% endfor %}
+              {% endblock content-list %}
+          </td>
+      </tr>
+      <tr class="content-bar bottom" > 
+          <td colspan=3>
+               &nbsp;
+          </td>
+      </tr>                
+  </table>           
+{% endblock content %}
