@@ -9,7 +9,7 @@
 - Get item data via web scraping (this data is editable for smarter results)
 - Any wishlist-item page pulls up similar items
 - Catalog page shows items in database by popularity
-- Implemented by Django, MySQL
+- Implemented by Django, MySQL, Python
 
 ## Author: 
 - Ningna Wang (ningnaw@andrew.cmu.edu)
