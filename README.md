@@ -11,6 +11,10 @@
 - Catalog page shows items in database by popularity
 - Implemented by Django, MySQL, Python
 
+
+## Build Instructions:
+- Some private settings were excluded from github, please email Nina (ningnaw@andrew.cmu.edu) if you're interested
+
 ## Author: 
 - Ningna Wang (ningnaw@andrew.cmu.edu)
 - Cindy Lam (cllam@andrew.cmu.edu) 
