@@ -15,6 +15,10 @@
 ## Build Instructions:
 - Some private settings were excluded from github, please email Nina (ningnaw@andrew.cmu.edu) if you're interested
 
+- Under wishable directory:
+- $ python manage.py migrate
+- $ python manage.py runserver
+
 ## Author: 
 - Ningna Wang (ningnaw@andrew.cmu.edu)
 - Cindy Lam (cllam@andrew.cmu.edu) 
